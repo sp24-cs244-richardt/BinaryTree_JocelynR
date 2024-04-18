@@ -1,5 +1,9 @@
 #pragma once
 
+#include <algorithm>
+
+using namespace std;
+
 template <class ELEMENT_TYPE>
 class BinaryTree
 {
@@ -31,7 +35,44 @@ public:
     root_->leftSubTree_->rightSubTree_ = new BinaryTreeNode('D');
   }
 
-  int height()
+  int height() {
+    return height(root_);
+  }
 
+  void inOrder() {
+    inOrder(root_);
+  }
+
+  void postOrder() {
+    postOrder(root_);
+  }
+
+private:
+  int height(BinaryTreeNode* root) {
+
+    if (root == nullptr) return 0;
+
+    return 1 + max(height(root->leftSubTree_), height(root->rightSubTree_));
+  }
+
+  void inOrder(BinaryTreeNode* node) {
+
+    if (node == nullptr) return;
+
+    inOrder(node->leftSubTree_);
+    cout << node->data_;
+    inOrder(node->rightSubTree_);
+
+  }
+
+  void postOrder(BinaryTreeNode* node) {
+
+    if (node == nullptr) return;
+
+    inOrder(node->leftSubTree_);
+    inOrder(node->rightSubTree_);
+    cout << node->data_;
+
+  }
 };
 

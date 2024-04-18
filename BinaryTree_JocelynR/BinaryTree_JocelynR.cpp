@@ -10,6 +10,12 @@ int main()
   std::cout << "Hello World!\n";
 
   BinaryTree<char> demoTree;
+
+  std::cout << "The height of the tree is " << demoTree.height()<<endl;
+  std::cout << "Inorder is : ";
+  demoTree.inOrder();
+  std::cout<<endl;
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
