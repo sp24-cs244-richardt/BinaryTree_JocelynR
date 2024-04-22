@@ -146,6 +146,9 @@ public:
 
   }
 
+  bool remove(ELEMENT_TYPE item){
+    return false;
+  }
 
 };
 
