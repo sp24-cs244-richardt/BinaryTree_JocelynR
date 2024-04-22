@@ -28,11 +28,6 @@ public:
 
     root_ = nullptr;
 
-    root_ = new BinaryTreeNode('A');
-    root_->rightSubTree_ = new BinaryTreeNode('E');
-    root_->leftSubTree_ = new BinaryTreeNode('B');
-    root_->leftSubTree_->leftSubTree_ = new BinaryTreeNode('C');
-    root_->leftSubTree_->rightSubTree_ = new BinaryTreeNode('D');
   }
 
   int height() {
@@ -74,5 +69,83 @@ private:
     cout << node->data_;
 
   }
+
+public:
+  bool search(ELEMENT_TYPE searchElement) {
+
+    //nothing is in the tree
+    if (root_ == nullptr) return false;
+
+    //the element is the first in the tree
+    BinaryTreeNode* current = root_;
+
+    //while we are at the end of the branch
+    while (current != nullptr) {
+
+      if (current->data_ == searchElement) return true;
+
+      //if less move to the left
+      else if (searchElement < current->data_) {
+        current = current->leftSubTree_;
+
+      //if greater move to the right
+      }
+      else {
+        current = current->rightSubTree_;
+      }
+
+    }
+
+    //reached the end of a branch, it's not found
+    return false;
+
+  }
+
+  bool insert(ELEMENT_TYPE item) {
+
+    //In-progress - finish debugging next class
+    // 
+    //wrap item in a node
+    BinaryTreeNode* newNode = new BinaryTreeNode(item);
+
+    //create a current to walk through the tree to find location to add element
+    BinaryTreeNode* current = root_;
+    BinaryTreeNode* trail = nullptr;
+
+    //if our tree is empty
+    if (root_ == nullptr) {
+      root_ = newNode;
+    }
+
+    //while we haven't found an empty spot to place the new node
+    while (current != nullptr) {
+
+      //if the item is less than
+      if (item < current->data_) {
+        trail = current;
+        current = current->leftSubTree_;
+
+        //else if the item is greater than
+      }
+      else if (item > current->data_) {
+        trail = current;
+        current = current->rightSubTree_;
+
+        //otherwise, they are equal and this tree doesn't allow duplicates
+      } else {
+        return false;
+      }
+    }
+
+    //if we made it out of the loop, we can add the element
+    if (item < trail->data_) {
+      trail->leftSubTree_ = newNode;
+    } else {
+      trail->rightSubTree_ = newNode;
+    }
+
+  }
+
+
 };
 

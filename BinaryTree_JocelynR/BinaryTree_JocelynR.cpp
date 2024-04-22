@@ -11,11 +11,28 @@ int main()
 
   BinaryTree<char> demoTree;
 
+  demoTree.insert('8');
+  demoTree.insert('5');
+  demoTree.insert('9');
+
   std::cout << "The height of the tree is " << demoTree.height()<<endl;
   std::cout << "Inorder is : ";
   demoTree.inOrder();
   std::cout<<endl;
 
+  if (demoTree.search('A')) {
+    cout << "The value 'A' is found" << endl;
+  }
+  else {
+    cout << "The value 'A' is not found" << endl;
+  }
+
+  if (demoTree.search('D')) {
+    cout << "The value 'D' is found" << endl;
+  }
+  else {
+    cout << "The value 'D' is not found" << endl;
+  }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
